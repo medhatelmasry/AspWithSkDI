@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "SK Dependency Injection in ASP.NET Razor Pages";
+}
+
+<div class="text-center">
+    <h3 class="display-6">@ViewData["Title"]</h3>
+    <form method="post" onsubmit="showPleaseWaitMessage()">
+        <input type="text" name="userPrompt" size="80" 
+            required placeholder="What do you want to bake today?"/>
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<p>&nbsp;</p>
+
+<div id="please-wait-message" style="display:none;">
+    <p class="alert alert-info">Please wait...</p>
+</div>
+
+<div id="response-message">
+    @if (Model.Reply != null) {
+        <p class="alert alert-success">@Html.Raw(Model.Reply)</p>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function showPleaseWaitMessage() {
+            document.getElementById('response-message').innerHTML = '';
+            document.getElementById('please-wait-message').style.display = 'block';
+        }
+    </script>
+}
